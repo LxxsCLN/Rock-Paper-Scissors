@@ -8,7 +8,57 @@
 </head>
 <body>
     <script>
-        
+        function getComputerChoice()
+        {
+            let computerChoice;
+            computerChoice = Math.floor(Math.random()* 3) + 1;
+            if (computerChoice === 1)
+            {
+                computerChoice = "Rock";
+            }
+            else if (computerChoice === 2)
+            {
+                computerChoice = "Paper";
+            }
+            else {
+                computerChoice = "Scissors";
+            }
+            return computerChoice;
+        }
+        getComputerChoice();
+
+        function oneRound() 
+        {
+            let playerChoice = prompt("Rock, Paper, or Scissors?");
+            if (playerChoice === getComputerChoice)
+            {
+                console.log("Tie");
+            }
+            switch (getComputerChoice)
+            {
+                case playerChoice === computerChoice:
+                    console.log("Tie");
+                    break;
+                case playerChoice === "Rock" && computerChoice === "Scissors":
+                    console.log("Player Wins");
+                    break;
+                case playerChoice === "Rock" && computerChoice === "Paper": 
+                    console.log("Computer Wins");
+                    break;
+                case playerChoice === "Paper" && computerChoice === "Rock": 
+                    console.log("Player Wins");
+                    break;
+                case playerChoice === "Paper" && computerChoice === "Scissors": 
+                    console.log("Computer Wins");
+                    break;
+                case playerChoice === "Scissors" && computerChoice === "Rock": 
+                    console.log("Computer Wins");
+                    break;
+                case playerChoice === "Scissors" && computerChoice === "Paper": 
+                    console.log("Player Wins");
+                    break;
+            }
+        }   
     </script>
 </body>
 </html>
