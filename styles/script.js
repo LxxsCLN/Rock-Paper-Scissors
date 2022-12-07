@@ -47,58 +47,20 @@ function oneRound(e)
     let tie = `Tie!\nYou chose: ${e}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore}\nChoose Rock, Paper or Scissors!`;
     let win = `You Win!\nYou chose: ${e}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore + 1}. Computer score: ${computerScore}\nChoose Rock, Paper or Scissors!`;
     let lose = `You Lose!\nYou chose: ${e}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore + 1}\nChoose Rock, Paper or Scissors!`;
-    switch (e)
+    
+    if ((e === 'Rock' && computerChoice === 'Rock') || (e === 'Paper' && computerChoice === 'Paper') || (e === 'Scissors' && computerChoice === 'Scissors'))
     {
-        case "Rock":
-            if (computerChoice === "Rock")
-            {
-                results.innerText = tie;
-            }
-            else if (computerChoice === "Paper")
-            {
-                computerScore++;
-                results.innerText = lose;
-            }
-            else if (computerChoice === "Scissors")
-            {
-                playerScore++;
-                results.innerText = win;
-            }
-        break;
-        case "Paper":
-            if (computerChoice === "Paper")
-            {
-                results.innerText = tie;
-            }
-            else if (computerChoice === "Scissors")
-            {
-                computerScore++;
-                results.innerText = lose;
-            }
-            else if (computerChoice === "Rock")
-            {      
-                playerScore++;                  
-                results.innerText = win;
-            }
-        break;
-        case "Scissors":
-            if (computerChoice === "Scissors")
-            {
-                results.innerText = tie;
-            }
-            else if (computerChoice === "Rock")
-            {
-                computerScore++;
-                results.innerText = lose;
-            }
-            else if (computerChoice === "Paper")
-            {
-                playerScore++;
-                results.innerText = win;
-            }
-        break;
-        default:
-            alert('Error');
+        results.innerText = tie;
+    }
+    else if ((e === 'Rock' && computerChoice === 'Scissors') || (e === 'Paper' && computerChoice === 'Rock') || (e === 'Scissors' && computerChoice === 'Paper'))
+    {
+        playerScore++;
+        results.innerText = win;
+    }
+    else
+    {
+        computerScore++;
+        results.innerText = lose;
     }
     console.log('p: ' + e + '\nc: ' + computerChoice + `\nPlayer score: ${playerScore}. Computer score: ${computerScore}`);
 }   
