@@ -3,10 +3,13 @@ const rockB = document.createElement('button');
 const paperB = document.createElement('button');
 const scissorsB = document.createElement('button');
 const results = document.createElement('div');
+const playAgainB = document.createElement('button');
 
 rockB.innerText = "Rock";
 paperB.innerText = "Paper";
 scissorsB.innerText = "Scissors";
+results.innerText = 'Choose Rock, Paper or Scissors!';
+playAgainB.innerText = 'Play Again!';
 
 body.appendChild(rockB);
 body.appendChild(paperB);
@@ -26,70 +29,69 @@ function getComputerChoice()
     computerChoice = Math.floor(Math.random()* 3);
     if (computerChoice === 0)
     {
-        computerChoice = "rock";
+        computerChoice = "Rock";
     }
     else if (computerChoice === 1)
     {
-        computerChoice = "paper";
+        computerChoice = "Paper";
     }
     else {
-        computerChoice = "scissors";
+        computerChoice = "Scissors";
     }
     return computerChoice;
 }
 
 function oneRound(e) 
 {
-    let playerChoice = e;
     getComputerChoice();
-    let tie = `Tie! \nPlayer score: ${playerScore}. Computer score: ${computerScore}`;
-    let win = `You Win! \nPlayer score: ${playerScore + 1}. Computer score: ${computerScore}`;
-    let lose = `You Lose! \nPlayer score: ${playerScore}. Computer score: ${computerScore + 1}`;
-    switch (playerChoice)
+    let tie = `Tie!\nYou chose: ${e}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore}\nChoose Rock, Paper or Scissors!`;
+    let win = `You Win!\nYou chose: ${e}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore + 1}. Computer score: ${computerScore}\nChoose Rock, Paper or Scissors!`;
+    let lose = `You Lose!\nYou chose: ${e}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore + 1}\nChoose Rock, Paper or Scissors!`;
+    switch (e)
     {
-        case "rock":
-            if (computerChoice === "rock")
+        case "Rock":
+            if (computerChoice === "Rock")
             {
                 results.innerText = tie;
             }
-            else if (computerChoice === "paper")
+            else if (computerChoice === "Paper")
             {
                 computerScore++;
                 results.innerText = lose;
             }
-            else if (computerChoice === "scissors")
+            else if (computerChoice === "Scissors")
             {
                 playerScore++;
                 results.innerText = win;
             }
         break;
-        case "paper":
-            if (computerChoice === "paper")
+        case "Paper":
+            if (computerChoice === "Paper")
             {
                 results.innerText = tie;
             }
-            else if (computerChoice === "scissors")
+            else if (computerChoice === "Scissors")
             {
                 computerScore++;
                 results.innerText = lose;
             }
-            else if (computerChoice === "rock")
+            else if (computerChoice === "Rock")
             {      
                 playerScore++;                  
                 results.innerText = win;
             }
         break;
-        case "scissors":
-            if (computerChoice === "scissors")
+        case "Scissors":
+            if (computerChoice === "Scissors")
             {
                 results.innerText = tie;
             }
-            else if (computerChoice === "rock")
+            else if (computerChoice === "Rock")
             {
                 computerScore++;
                 results.innerText = lose;
             }
-            else if (computerChoice === "paper")
+            else if (computerChoice === "Paper")
             {
                 playerScore++;
                 results.innerText = win;
@@ -105,37 +107,49 @@ function oneRoundRock()
 {
 if (playerScore !== 5 && computerScore !== 5)
 {
-    oneRound('rock');
+    oneRound('Rock');
 }
-checkWinner();
+checkWinner('Rock');
 }
 
 function oneRoundPaper()
 {
 if (playerScore !== 5 && computerScore !== 5)
 {
-    oneRound('paper');
+    oneRound('Paper');
 }
-checkWinner();
+checkWinner('Paper');
 }
 
 function oneRoundScissors()
 {
 if (playerScore !== 5 && computerScore !== 5)
 {
-    oneRound('scissors');
+    oneRound('Scissors');
 }
-checkWinner();
+checkWinner('Scissors');
 }
 
-function checkWinner()
+function checkWinner(x)
 {
 if (playerScore === 5)
 {
-    results.innerText = `You Win the Game!!! \nPlayer score: ${playerScore}. Computer score: ${computerScore}`;
+    results.innerText = `You Won The Game!!! \nYou chose: ${x}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore}`;
+    body.appendChild(playAgainB);
+    playAgainB.addEventListener('click', resetScore);
 }
 else if (computerScore === 5)
 {
-    results.innerText = `You Lose the Game!!! \nPlayer score: ${playerScore}. Computer score: ${computerScore}`;
+    results.innerText = `You Lost The Game!!! \nYou chose: ${x}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore}`;
+    body.appendChild(playAgainB);
+    playAgainB.addEventListener('click', resetScore);
 }
+}
+
+function resetScore()
+{
+    playerScore = 0;
+    computerScore = 0;
+    results.innerText = 'Choose Rock, Paper or Scissors!';
+    body.removeChild(playAgainB);
 }
