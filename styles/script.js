@@ -4,21 +4,28 @@ const paperB = document.createElement('button');
 const scissorsB = document.createElement('button');
 const results = document.createElement('div');
 const playAgainB = document.createElement('button');
+const fdiv = document.createElement('fdiv');
 
-rockB.innerText = "Rock";
-paperB.innerText = "Paper";
-scissorsB.innerText = "Scissors";
+//rockB.innerText = "Rock";
+//paperB.innerText = "Paper";
+//scissorsB.innerText = "Scissors";
 results.innerText = 'Choose Rock, Paper or Scissors!';
 playAgainB.innerText = 'Play Again!';
 
-body.appendChild(rockB);
-body.appendChild(paperB);
-body.appendChild(scissorsB);
+body.appendChild(fdiv);
+fdiv.appendChild(rockB);
+fdiv.appendChild(paperB);
+fdiv.appendChild(scissorsB);
 body.appendChild(results);
 
 let computerChoice;
 let playerScore = 0;
 let computerScore = 0;
+let counter = 0;
+
+rockB.classList.add('rockB');
+paperB.classList.add('paperB');
+scissorsB.classList.add('scissorsB');
 
 scissorsB.addEventListener('click', oneRoundScissors);
 rockB.addEventListener('click', oneRoundRock);
@@ -94,17 +101,19 @@ checkWinner('Scissors');
 
 function checkWinner(x)
 {
-if (playerScore === 5)
+if (playerScore === 5 && counter === 0)
 {
     results.innerText = `You Won The Game!!! \nYou chose: ${x}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore}`;
     body.appendChild(playAgainB);
     playAgainB.addEventListener('click', resetScore);
+    counter++;
 }
-else if (computerScore === 5)
+else if (computerScore === 5 && counter === 0)
 {
     results.innerText = `You Lost The Game!!! \nYou chose: ${x}. The computer chose: ${computerChoice}.\nPlayer score: ${playerScore}. Computer score: ${computerScore}`;
     body.appendChild(playAgainB);
     playAgainB.addEventListener('click', resetScore);
+    counter++;
 }
 }
 
@@ -114,4 +123,5 @@ function resetScore()
     computerScore = 0;
     results.innerText = 'Choose Rock, Paper or Scissors!';
     body.removeChild(playAgainB);
+    counter = 0;
 }
