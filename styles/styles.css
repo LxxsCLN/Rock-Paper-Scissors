@@ -1,20 +1,21 @@
 .rockB {
-    background: url(/styles/rock.png);
+    background: url(rock.png);
     width: 200px;
     height: 124px;
     border: 0px;
 }
 .paperB {
-    background: url(/styles/paper.png);
+    background: url(paper.png);
     width: 200px;
     height: 124px;
     border: 0px;
 }
 .scissorsB {
-    background: url(/styles/scissors.png);
+    background: url(scissors.png);
     width: 200px;
     height: 124px;
     border: 0px;
+    margin-bottom: 20px;
 }
 body{
     margin-top: 200px;
@@ -23,4 +24,10 @@ body{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+div
+{
+    display: flex;
+    gap: 20px;
 }

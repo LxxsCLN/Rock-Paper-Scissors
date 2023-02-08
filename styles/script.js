@@ -4,7 +4,7 @@ const paperB = document.createElement('button');
 const scissorsB = document.createElement('button');
 const results = document.createElement('div');
 const playAgainB = document.createElement('button');
-const fdiv = document.createElement('fdiv');
+const fdiv = document.createElement('div');
 
 //rockB.innerText = "Rock";
 //paperB.innerText = "Paper";
